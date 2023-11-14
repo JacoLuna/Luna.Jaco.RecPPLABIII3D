@@ -54,6 +54,19 @@
           <label class="labels" for="cboTipo"><i class="fa-solid fa-crow iconos"></i> Tipo</label>
           <select name="Tipo" id="cboTipo" type=""></select>
         </div>
+
+        <fieldset id="chkGroup">
+          <legend>materias</legend>
+          <input type="checkbox" name="Materia" value="labo 3">labo 3
+          <input type="checkbox" name="Materia" value="progra 3">progra 3
+          <input type="checkbox" name="Materia" value="estadistica"> estadistica
+        </fieldset>
+
+        <dialog id="popUp" onclick="cerrarPopUp()">
+          <h2 id="mensajePopUp"></h2>
+          <p>has click para cerrar este cartel</p>
+        </dialog>
+
         <div id="buttons">
           <button type="button"id="Eliminar"  class="botones" onclick="eliminarMonstruo()" disabled = true><i class="fa-solid fa-skull iconos-botones"></i> Eliminar</button>
           <button type="reset" id="cancelarEdicion" class="botones hide"><i class="fa-solid fa-skull-crossbones iconos iconos-botones"></i> Cancelar Edicion</button>
@@ -79,6 +92,7 @@
           <td class="cabecera">Defensa</td>
           <td class="cabecera">Miedo</td>
           <td class="cabecera">Tipo</td>
+          <td class="cabecera">Materias</td>
         </tr>
       </table>
     </section>

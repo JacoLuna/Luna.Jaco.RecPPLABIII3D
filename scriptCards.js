@@ -23,21 +23,25 @@ function agregarMonstruo(monstruo) {
   const $cardsDefensa = document.createElement("p");
   const $cardsMiedo = document.createElement("p");
   const $cardsTipo = document.createElement("p");
+  const $cardsMaterias = document.createElement("p");
 
   const $txtNombre = document.createTextNode("Nombre: " + monstruo.nombre);
   const $txtAlias = document.createTextNode("Alias: " + monstruo.alias);
   const $txtdefensa = document.createTextNode("Defensa: " + monstruo.defensa);
   const $txtMiedo = document.createTextNode("Miedo: " + monstruo.miedo);
   const $txtTipo = document.createTextNode("Tipo: " + monstruo.tipo);
+  const $txtMaterias = document.createTextNode("materias: " + monstruo.materias);
+
 
   $divCards.classList.add("Cards");
   $cardsDiv.appendChild($divCards);
 
-  $divCards.append($cardsNombre ,$cardsAlias ,$cardsDefensa ,$cardsMiedo ,$cardsTipo);
+  $divCards.append($cardsNombre ,$cardsAlias ,$cardsDefensa ,$cardsMiedo ,$cardsTipo, $cardsMaterias);
 
   $cardsNombre.appendChild($txtNombre);
   $cardsAlias.appendChild($txtAlias);
   $cardsDefensa.appendChild($txtdefensa);
   $cardsMiedo.appendChild($txtMiedo);
   $cardsTipo.appendChild($txtTipo);
+  $cardsMaterias.appendChild($txtMaterias);
 }
