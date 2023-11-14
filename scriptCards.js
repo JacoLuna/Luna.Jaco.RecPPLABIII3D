@@ -40,6 +40,4 @@ function agregarMonstruo(monstruo) {
   $cardsDefensa.appendChild($txtdefensa);
   $cardsMiedo.appendChild($txtMiedo);
   $cardsTipo.appendChild($txtTipo);
-
-
 }

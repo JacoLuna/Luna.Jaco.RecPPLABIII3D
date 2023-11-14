@@ -110,7 +110,11 @@ function eliminarMonstruo() {
     if (
       $formulario.txtNombre.value == monstruo.nombre
     ) {
-      $tablaMonstruos.deleteRow(index+1);
+      setTimeout(() => {
+        $tablaMonstruos.deleteRow(index+1);
+        $spinner.classList.add("hide");
+      }, 2000);
+      $spinner.classList.remove("hide");
       monstruos.splice(index, 1);
       $formulario.txtNombre.value = "";
       $formulario.txtAlias.value = "";
