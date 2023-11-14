@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CRUD Monstruos</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+    
+  </head>
+  <body>
+    <header> 
+      <img src="/src/halloween_logo.png" id="logo"/>
+      <div id="tituloLinks">
+        <h1 id="titulo">los amigos del Conde Drácula</h1>
+        <nav class="links">
+          <a href="index.html">Home</a>
+          <a href="crudMonstruos.html">Monstruos</a>
+          <a href="#">Blog</a>
+          <a href="https://www.linkedin.com/in/jaco-luna-885711213/">Contacto</a>
+        </nav>
+      </div>
+    </header>
+
+    <section id="crudMonstruos" class="contenidoPagina">
+      <form id="form">
+        <div class="inputs">
+          <label class="labels" for="txtNombre">Nombre</label>
+          <input id="txtNombre" />
+        </div>
+
+        <div class="inputs">
+          <label class="labels" for="txtAlias"><i class="fa-solid fa-mask iconos iconos"></i> Alias</label>
+          <input id="txtAlias" />
+        </div>
+
+        <fieldset id="rdbGroup">
+          <legend><i class="fa-solid fa-book-skull iconos"></i> Defensa</legend>
+          <input id="rdbPocion" type="radio" class="defensa" name="defensa" value="pocion" />pocion
+          <input id="rdbCrucifijo" type="radio" class="defensa" name="defensa" value="crucifijo"/>crucifijo
+          <input id="rdbEstaca" type="radio" class="defensa" name="defensa" value="estaca" />estaca
+          <input id="rdbPlata" type="radio" class="defensa" name="defensa" value="plata" />plata
+        </fieldset>
+
+        <div class="inputs">
+          <label class="labels" for="rangeMiedo"><i class="fa-solid fa-spider iconos"></i> Miedo</label>
+          <input id="rangeMiedo" type="range" />
+        </div>
+
+        <div class="inputs">
+          <label class="labels" for="cboTipo"><i class="fa-solid fa-crow iconos"></i> Tipo</label>
+          <select name="Tipo" id="cboTipo" type=""></select>
+        </div>
+        <div id="buttons">
+          <button type="button"id="Eliminar"  class="botones" onclick="eliminarMonstruo()" disabled = true><i class="fa-solid fa-skull iconos-botones"></i> Eliminar</button>
+          <button type="reset" id="cancelarEdicion" class="botones hide"><i class="fa-solid fa-skull-crossbones iconos iconos-botones"></i> Cancelar Edicion</button>
+          <button type="submit"id="guardar"  class="botones"><i class="fa-solid fa-ghost iconos-botones"></i> </button>
+        </div>
+      </form>
+      
+      <div id="error" >
+        <p id="errorMsgIngresos" class="hide">Datos incompletos</p>
+        <p id="errorMsgEdicion" class="hide">Ya existe un monstruo con ese nombre</p>
+      </div>
+      
+      <div id="spinner" class="hide">
+        <img id="spinnerGif" src="/src/spinner_chido.gif" />
+      </div>
+    </section>
+
+    <section class="contenidoPagina">
+      <table id="tablaMonstruos">
+        <tr>
+          <td class="cabecera">Nombre</td>
+          <td class="cabecera">Alias</td>
+          <td class="cabecera">Defensa</td>
+          <td class="cabecera">Miedo</td>
+          <td class="cabecera">Tipo</td>
+        </tr>
+      </table>
+    </section>
+
+    <footer id="contacto">
+      <nav class="links">
+        <a href="index.html">Home</a>
+        <a href="crudMonstruos.html">Monstruos</a>
+        <a href="#">Blog</a>
+        <a href="https://www.linkedin.com/in/jaco-luna-885711213/">Contacto</a>
+      </nav>
+
+      <h2 id="derechos"> Laboratorio III - TODOS LOS DERECHOS RESERVADOS 2023</h2>
+    </footer>
+
+    <script src="./clases/Personaje.js"></script>
+    <script src="./clases/Monstruo.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header> 
+        <img src="/src/halloween_logo.png" id="logo"/>
+        <div id="tituloLinks">
+          <h1 id="titulo">los amigos del Conde Drácula</h1>
+          <nav class="links">
+            <a href="index.html">Home</a>
+            <a href="crudMonstruos.html">Monstruos</a>
+            <a href="#">Blog</a>
+            <a href="https://www.linkedin.com/in/jaco-luna-885711213/">Contacto</a>
+          </nav>
+        </div>
+      </header>
+
+      
+      <div id="spinner" class="hide">
+        <img id="spinnerGif" src="/src/spinner_chido.gif" />
+      </div>
+      <section id="cardsSection" class="contenidoPagina">
+        <h2 id="textoCards">Informacion de los monstruos</h2>
+        <div id="cardsDiv"></div>
+      </section>
+
+      <footer id="contacto">
+        <nav class="links">
+          <a href="index.html">Home</a>
+          <a href="crudMonstruos.html">Monstruos</a>
+          <a href="#">Blog</a>
+          <a href="https://www.linkedin.com/in/jaco-luna-885711213/">Contacto</a>
+        </nav>
+  
+        <h2 id="derechos"> Laboratorio III - TODOS LOS DERECHOS RESERVADOS 2023</h2>
+      </footer>
+      
+      <script src="./clases/Personaje.js"></script>
+      <script src="./clases/Monstruo.js"></script>
+      <script src="./scriptCards.js"></script>
+</body>
+</html>
