@@ -1,4 +1,11 @@
-const tiposArray = ["Esqueleto","Zombie","Vampiro","Fantasma","Bruja","Hombre lobo"];
+const tiposArray = [
+  "Esqueleto",
+  "Zombie",
+  "Vampiro",
+  "Fantasma",
+  "Bruja",
+  "Hombre lobo",
+];
 localStorage.setItem("tipos", JSON.stringify(tiposArray));
 
 // localStorage.removeItem("monstruos");
@@ -27,8 +34,8 @@ const $formulario = document.forms[0];
 let editando = false;
 
 let monstruos = JSON.parse(localStorage.getItem("monstruos") == null)
-? []
-: JSON.parse(localStorage.getItem("monstruos"));
+  ? []
+  : JSON.parse(localStorage.getItem("monstruos"));
 
 let tipos = JSON.parse(localStorage.getItem("tipos"));
 
@@ -37,7 +44,7 @@ $btnGuardar.appendChild($btnGuardarText);
 tipos.forEach((tipo) => {
   const $select = document.createElement("option");
   const $cboTipoText = document.createTextNode(tipo);
-  
+
   $select.setAttribute("value", tipo);
   $select.setAttribute("text", tipo);
   $select.appendChild($cboTipoText);
@@ -63,7 +70,7 @@ $formulario.addEventListener("submit", (e) => {
   let nuevoMonstruo = undefined;
   let defensa = getDefensa();
   let materias = getMaterias();
-  
+
   let ultimoId = parseInt(localStorage.getItem("ultimoId"));
 
   if (
@@ -77,7 +84,7 @@ $formulario.addEventListener("submit", (e) => {
     monstruos.forEach((monstruo) => {
       if ($formulario.txtNombre.value == monstruo.nombre) {
         nuevoMonstruo = monstruo;
-        if(editando){
+        if (editando) {
           nuevoMonstruo.nombre = $formulario.txtNombre.value;
           nuevoMonstruo.alias = $formulario.txtAlias.value;
           nuevoMonstruo.tipo = $formulario.Tipo.value;
@@ -85,14 +92,13 @@ $formulario.addEventListener("submit", (e) => {
           nuevoMonstruo.defensa = defensa;
           nuevoMonstruo.materias = materias;
 
-      
           setTimeout(() => {
             $spinner.classList.add("hide");
             $PopUp.open = true;
             $popUpText.textContent = "Monstruo Actualizado";
           }, 2000);
           $spinner.classList.remove("hide");
-        }else{
+        } else {
           $errorMsgEdicion.classList.remove("hide");
         }
       }
@@ -120,10 +126,8 @@ $formulario.addEventListener("submit", (e) => {
 
       $spinner.classList.remove("hide");
       localStorage.setItem("ultimoId", ultimoId + 1);
-
     }
 
-    
     localStorage.setItem("monstruos", JSON.stringify(monstruos));
     $formulario.reset();
   } else {
@@ -133,11 +137,9 @@ $formulario.addEventListener("submit", (e) => {
 
 function eliminarMonstruo() {
   monstruos.forEach((monstruo, index) => {
-    if (
-      $formulario.txtNombre.value == monstruo.nombre
-    ) {
+    if ($formulario.txtNombre.value == monstruo.nombre) {
       setTimeout(() => {
-        $tablaMonstruos.deleteRow(index+1);
+        $tablaMonstruos.deleteRow(index + 1);
         $spinner.classList.add("hide");
 
         $PopUp.open = true;
@@ -153,7 +155,7 @@ function eliminarMonstruo() {
   localStorage.setItem("monstruos", JSON.stringify(monstruos));
   $formulario.txtNombre.toggleAttribute("disabled");
   $btnCancelarEdicion.classList.add("hide");
-  $btnEliminar.toggleAttribute("disabled");;
+  $btnEliminar.toggleAttribute("disabled");
 }
 
 function addRow(monstruo) {
@@ -219,7 +221,7 @@ $formulario.addEventListener("reset", () => {
   if (!$btnEliminar.hasAttribute("disabled")) {
     $btnEliminar.toggleAttribute("disabled");
   }
-  $formulario.Materia.forEach(materia => {
+  $formulario.Materia.forEach((materia) => {
     materia.checked = false;
   });
 
@@ -238,12 +240,11 @@ function seleccionarMonstruo(e) {
   $formulario.rangeMiedo.value = celdas[3].textContent;
   $formulario.Tipo.value = celdas[4].textContent;
 
-  
-  $formulario.Materia.forEach(materia => {
+  $formulario.Materia.forEach((materia) => {
     materia.checked = false;
   });
   materias.forEach((materia, index) => {
-    if(materia.value == materias[index].value){
+    if (materia.value == materias[index].value) {
       $formulario.Materia[index].checked = true;
     }
   });
@@ -260,11 +261,11 @@ function seleccionarMonstruo(e) {
     $formulario.txtNombre.toggleAttribute("disabled");
   }
   $btnEliminar.toggleAttribute("disabled");
-  
+
   $errorMsgIngresos.classList.add("hide");
   $errorMsgEdicion.classList.add("hide");
 }
 
-function cerrarPopUp(){
+function cerrarPopUp() {
   $PopUp.open = false;
 }
