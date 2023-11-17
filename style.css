@@ -41,9 +41,9 @@ header {
 
 /* FORM */
 #crudMonstruos {
-  height: 50vh;
+  /* height: 50vh; */
   display: block;
-
+  height: 100%;
   #form {
     display: flex;
     flex-direction: column;
@@ -57,14 +57,14 @@ header {
     margin-right: auto;
     margin-left: auto;
 
-    .labels,
+    /* .labels,
     #buttons,
     .inputs,
     #rdbGroup,
     #chkGroup {
       display: flex;
-      width: 80%;
-    }
+      width: 20%;
+    } */
     .inputs > input,
     select {
       width: 80%;
@@ -77,10 +77,10 @@ header {
         margin-right: 10px;
       }
     }
-    #rdbGroup, #chkGroup {
+    /* #rdbGroup, #chkGroup {
       display: flex;
       justify-content: space-evenly;
-    }
+    } */
 
     #popUp{
       position: relative;
@@ -207,14 +207,14 @@ footer {
       box-sizing: border-box;
       border: solid transparent 5px;
 
-      .labels,
+      /* .labels,
       #buttons,
       .inputs,
       #rdbGroup,
       #chkGroup {
         display: block;
         width: 100%;
-      }
+      } */
 
       .inputs > input,
       select {
@@ -222,12 +222,12 @@ footer {
         padding: 0;
         box-sizing: border-box;
       }
-      #rdbGroup,
+      /* #rdbGroup,
       #chkGroup {
         display: flex;
         padding: 0;
         padding-bottom: 10px;
-      }
+      } */
 
       .inputs > label {
         display: flex;

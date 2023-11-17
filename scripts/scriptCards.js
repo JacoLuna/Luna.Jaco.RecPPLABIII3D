@@ -15,6 +15,10 @@ if (monstruos.length != 0) {
   $spinner.classList.remove("hide");
 }
 
+window.onload = () =>{
+  
+}
+
 function agregarMonstruo(monstruo) {
   const $divCards = document.createElement("div");
   

@@ -1,6 +1,5 @@
 class Personaje {
-  constructor(id, nombre, tipo) {
-    this.id = id;
+  constructor(nombre, tipo) {
     this.nombre = nombre;
     this.tipo = tipo;
   }

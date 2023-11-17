@@ -1,7 +1,7 @@
 class Monstruo extends Personaje {
 
-  constructor(id, nombre, tipo, alias, miedo, defensa, materias) {
-    super(id, nombre, tipo);
+  constructor(nombre, alias, tipo, miedo, defensa, materias) {
+    super(nombre, tipo);
     this.alias = alias;
     this.miedo = miedo;
     this.defensa = defensa;
