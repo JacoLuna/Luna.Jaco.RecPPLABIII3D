@@ -43,87 +43,78 @@
 
     <section id="crudMonstruos" class="contenidoPagina">
       <form id="form">
-        <div class="inputs">
-          <label class="labels" for="txtNombre">Nombre</label>
-          <input id="txtNombre" />
+
+        <div class="mb-3 inputs">
+          <label for="txtNombre" class="form-label">Nombre</label>
+          <input type="text" class="form-control" id="txtNombre" placeholder="vlad teppes">
         </div>
 
-        <div class="inputs">
-          <label class="labels" for="txtAlias"
-            ><i class="fa-solid fa-mask iconos iconos"></i> Alias</label
-          >
-          <input id="txtAlias" />
+        <div class="mb-3 inputs">
+          <i class="fa-solid fa-mask iconos iconos"></i> 
+          <label for="txtAlias" class="form-label">
+            Alias</label>
+          <input type="text" class="form-control" id="txtAlias" placeholder="dracula">
         </div>
 
         <fieldset id="rdbGroup">
           <legend><i class="fa-solid fa-book-skull iconos"></i> Defensa</legend>
-          <input
-            id="rdbPocion"
-            type="radio"
-            class="defensa"
-            name="defensa"
-            value="pocion"
-          />pocion
-          <input
-            id="rdbCrucifijo"
-            type="radio"
-            class="defensa"
-            name="defensa"
-            value="crucifijo"
-          />crucifijo
-          <input
-            id="rdbEstaca"
-            type="radio"
-            class="defensa"
-            name="defensa"
-            value="estaca"
-          />estaca
-          <input
-            id="rdbPlata"
-            type="radio"
-            class="defensa"
-            name="defensa"
-            value="plata"
-          />plata
+          <div class="form-check form-check-inline item">
+            <input class="form-check-input" type="radio" name="defensa" id="rdbPocion" value="pocion">
+            <label class="form-check-label" for="rdbPocion">
+              pocion
+            </label>
+          </div>
+
+          <div class="form-check form-check-inline item">
+            <input class="form-check-input" type="radio" name="defensa" id="rdbCrucifijo" value="crucifijo">
+            <label class="form-check-label" for="rdbCrucifijo">
+              crucifijo
+            </label>
+          </div>
+
+          <div class="form-check form-check-inline item">
+            <input class="form-check-input" type="radio" name="defensa" id="rdbEstaca" value="estaca">
+            <label class="form-check-label" for="rdbEstaca">
+              estaca
+            </label>
+          </div>
+          <div class="form-check form-check-inline item">
+            <input class="form-check-input" type="radio" name="defensa" id="rdbPlata" value="plata">
+            <label class="form-check-label" for="rdbPlata">
+              plata
+            </label>
+          </div>
         </fieldset>
 
         <div class="inputs">
-          <label class="labels" for="rangeMiedo"
-            ><i class="fa-solid fa-spider iconos"></i> Miedo</label
-          >
-          <input id="rangeMiedo" type="range" />
+          <label for="rangeMiedo" class="form-label form-check-inline">
+          <i class="fa-solid fa-spider iconos"></i>Miedo</label>
+          <input type="range" class="form-range inputs" min="0" max="5" step="0.5" id="rangeMiedo">
         </div>
 
-        <div class="inputs">
-          <label class="labels" for="cboTipo"
-            ><i class="fa-solid fa-crow iconos"></i> Tipo</label
-          >
-          <select name="Tipo" id="cboTipo" type=""></select>
+        <div class="form-floating inputs">
+          <select name="Tipo" class="form-select" id="cboTipo" aria-label="Floating label select example">
+          </select>
+          <label for="cboTipo"><i class="fa-solid fa-crow iconos"></i>Tipo</label>
         </div>
 
         <fieldset id="chkGroup">
           <legend>materias</legend>
-          <div class="d-flex justify-content-center">
-            <!-- 
-            <input type="checkbox" name="Materia" value="labo 3">labo 3
-            <input type="checkbox" name="Materia" value="progra 3">progra 3
-            <input type="checkbox" name="Materia" value="estadistica"> estadistica 
-            -->
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" name="Materia" type="checkbox" id="inlineCheckbox1" value="labo 3"/>
-              <label class="form-check-label" for="inlineCheckbox1">labo 3</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" name="Materia" type="checkbox" id="inlineCheckbox2" value="progra 3"/>
-              <label class="form-check-label" for="inlineCheckbox2">progra 3</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" name="Materia" type="checkbox" id="inlineCheckbox3" value="estadistica"/>
-              <label class="form-check-label" for="inlineCheckbox3">estadistica</label>
-            </div>
+          <div class="form-check form-check-inline item">
+            <input class="form-check-input" name="Materia" type="checkbox" id="inlineCheckbox1" value="labo 3"/>
+            <label class="form-check-label" for="inlineCheckbox1">labo 3</label>
+          </div>
+          <div class="form-check form-check-inline item">
+            <input class="form-check-input" name="Materia" type="checkbox" id="inlineCheckbox2" value="progra 3"/>
+            <label class="form-check-label" for="inlineCheckbox2">progra 3</label>
+          </div>
+          <div class="form-check form-check-inline item">
+            <input class="form-check-input" name="Materia" type="checkbox" id="inlineCheckbox3" value="estadistica"/>
+            <label class="form-check-label" for="inlineCheckbox3">estadistica</label>
           </div>
         </fieldset>
 
+        
         <dialog id="popUp" onclick="cerrarPopUp()">
           <h2 id="mensajePopUp"></h2>
           <p>has click para cerrar este cartel</p>
@@ -161,17 +152,30 @@
       </div>
     </section>
 
+
+    
     <section class="contenidoPagina">
-      <table id="tablaMonstruos">
-        <tr>
-          <td class="cabecera">Nombre</td>
-          <td class="cabecera">Alias</td>
-          <td class="cabecera">Defensa</td>
-          <td class="cabecera">Miedo</td>
-          <td class="cabecera">Tipo</td>
-          <td class="cabecera">Materias</td>
-        </tr>
-      </table>
+
+      <div class="container-md tablaSection">
+        
+        <div class="form-floating filtro">
+          <select name="Filtro" class="form-select" id="cboFiltro" aria-label="Floating label select example">
+          </select>
+          <label for="cboFiltro">Tipo</label>
+        </div>
+
+        <table id="tablaMonstruos">
+          <tr>
+            <td class="cabecera">Nombre</td>
+            <td class="cabecera">Alias</td>
+            <td class="cabecera">Defensa</td>
+            <td class="cabecera">Miedo</td>
+            <td class="cabecera">Tipo</td>
+            <td class="cabecera">Materias</td>
+          </tr>
+        </table>
+
+      </div>
     </section>
 
     <footer id="contacto">

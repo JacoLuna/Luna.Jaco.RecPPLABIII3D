@@ -6,9 +6,16 @@ const tiposArray = [
   "Bruja",
   "Hombre lobo",
 ];
+const filtrosArray = [
+  "Defensa",
+  "tipo",
+  "materias"
+];
 localStorage.setItem("tipos", JSON.stringify(tiposArray));
+localStorage.setItem("filtros", JSON.stringify(filtrosArray));
 
 const $cboTipo = document.getElementById("cboTipo");
+const $cboFiltro = document.getElementById("cboFiltro");
 const $rdbGroup = document.getElementsByName("defensa");
 const $chkGroup = document.getElementsByName("Materia");
 const $spinner = document.querySelector("#spinnerGif");
@@ -46,7 +53,15 @@ tiposArray.forEach((tipo) => {
   $select.appendChild($cboTipoText);
   $cboTipo.appendChild($select);
 });
+filtrosArray.forEach((filtro) => {
+  const $select = document.createElement("option");
+  const $cboFiltroText = document.createTextNode(filtro);
 
+  $select.setAttribute("value", filtro);
+  $select.setAttribute("text", filtro);
+  $select.appendChild($cboFiltroText);
+  $cboFiltro.appendChild($select);
+});
 window.onload = () => {
   getMonstruos();
 };
@@ -332,3 +347,10 @@ $formulario.addEventListener("reset", () => {
 function cerrarPopUp() {
   $PopUp.open = false;
 }
+
+// const myModal = document.getElementById('myModal')
+// const myInput = document.getElementById('myInput')
+
+// myModal.addEventListener('shown.bs.modal', () => {
+//   myInput.focus()
+// })
