@@ -1,4 +1,5 @@
 const tiposArray = [
+  "Todos",
   "Esqueleto",
   "Zombie",
   "Vampiro",
@@ -6,16 +7,10 @@ const tiposArray = [
   "Bruja",
   "Hombre lobo",
 ];
-const filtrosArray = [
-  "Defensa",
-  "tipo",
-  "materias"
-];
 localStorage.setItem("tipos", JSON.stringify(tiposArray));
-localStorage.setItem("filtros", JSON.stringify(filtrosArray));
 
 const $cboTipo = document.getElementById("cboTipo");
-const $cboFiltro = document.getElementById("cboFiltro");
+const $cboFiltro = document.querySelector("#cboFiltro");
 const $rdbGroup = document.getElementsByName("defensa");
 const $chkGroup = document.getElementsByName("Materia");
 const $spinner = document.querySelector("#spinnerGif");
@@ -27,6 +22,8 @@ const $btnCancelarEdicion = document.getElementById("cancelarEdicion");
 const $btnEliminar = document.getElementById("Eliminar");
 const $mensajePopUp = document.getElementById("mensajePopUp");
 const $PopUp = document.getElementById("popUp");
+const $tbody = document.getElementById("tbody");
+const $readOnlyText = document.getElementById("promedioMiedo");
 
 const $btnGuardarText = document.createTextNode("Guardar");
 const $btnActualizarText = document.createTextNode("Actualizar");
@@ -34,7 +31,6 @@ const $popUpText = document.createTextNode("");
 
 const $formulario = document.forms[0];
 const URLmonstruos = "http://localhost:3000/monstruos";
-const URLid = "http://localhost:3000/id";
 
 let editando = false;
 let ultimoId;
@@ -44,24 +40,24 @@ let idSeleccionado;
 $mensajePopUp.appendChild($popUpText);
 $btnGuardar.appendChild($btnGuardarText);
 
-tiposArray.forEach((tipo) => {
-  const $select = document.createElement("option");
+tiposArray.forEach((tipo, index) => {
+  const $tipoOpcion = document.createElement("option");
+  const $filtroOpcion = document.createElement("option");
   const $cboTipoText = document.createTextNode(tipo);
 
-  $select.setAttribute("value", tipo);
-  $select.setAttribute("text", tipo);
-  $select.appendChild($cboTipoText);
-  $cboTipo.appendChild($select);
-});
-filtrosArray.forEach((filtro) => {
-  const $select = document.createElement("option");
-  const $cboFiltroText = document.createTextNode(filtro);
+  if(index > 0){
+    $tipoOpcion.setAttribute("value", tipo);
+    $tipoOpcion.setAttribute("text", tipo);
+    $tipoOpcion.appendChild($cboTipoText);
+    $cboTipo.appendChild($tipoOpcion);
+  }
 
-  $select.setAttribute("value", filtro);
-  $select.setAttribute("text", filtro);
-  $select.appendChild($cboFiltroText);
-  $cboFiltro.appendChild($select);
+  $filtroOpcion.setAttribute("value", tipo);
+  $filtroOpcion.setAttribute("text", tipo);
+  $filtroOpcion.appendChild($cboTipoText);
+  $cboFiltro.appendChild($filtroOpcion);
 });
+
 window.onload = () => {
   getMonstruos();
 };
@@ -72,11 +68,11 @@ function getMonstruos() {
     .get(URLmonstruos)
     .then(({ data }) => {
       monstruos = data;
-      console.log(monstruos);
       if (monstruos.length > 0) {
         monstruos.forEach((monstruo) => {
           addRow(monstruo);
         });
+        calcularPromedioMiedo(monstruos);
       }
     })
     .catch((err) => {
@@ -216,9 +212,9 @@ function addRow(monstruo, row = 0) {
   const $txtMaterias = document.createTextNode(monstruo.materias);
 
   if(row == 0){
-    $tablaMonstruos.appendChild($tr);
+    $tbody.appendChild($tr);
   }else{
-    $tablaMonstruos.insertRow(row, $tr);
+    $tbody.insertRow(row, $tr);
   }
   $tr.append($tdNombre, $tdAlias, $tdDefensa, $tdMiedo, $tdTipo, $tdMaterias);
 
@@ -348,9 +344,88 @@ function cerrarPopUp() {
   $PopUp.open = false;
 }
 
-// const myModal = document.getElementById('myModal')
-// const myInput = document.getElementById('myInput')
+function filtrar(){
+  let monstruosFiltrados = monstruos
+  
+  while ($tbody.firstChild) {
+    $tbody.removeChild($tbody.firstChild);
+  }
 
-// myModal.addEventListener('shown.bs.modal', () => {
-//   myInput.focus()
-// })
+  if($cboFiltro.value != "Todos"){
+    monstruosFiltrados = monstruos.filter(function(monstruo){
+      return monstruo.tipo == $cboFiltro.value;
+    });
+  }else{
+    monstruosFiltrados = monstruos;
+  }
+  monstruosFiltrados.forEach( (monstruo) => {
+    addRow(monstruo);
+  });
+  calcularPromedioMiedo(monstruosFiltrados);
+  
+  let columnas = document.querySelectorAll(".filtroCkh");
+  columnas.forEach((col, index) => {
+    col.checked = true;
+    chkColumna(index, col);
+  });
+}
+
+function chkColumna(colNum, obj){
+  let col = getColumn(colNum);
+  
+  if(col != null){
+    if(obj.checked){
+      col.forEach( (columna) => {
+        columna.classList.remove("hide");
+      });
+    }else{
+      col.forEach( (columna) => {
+        columna.classList.add("hide");
+      });
+    }
+  }
+}
+
+function getColumn(col) {
+  var n = $tablaMonstruos.rows.length;
+  var i, s = null, tr, td;
+  let cells = [];
+  if (col < 0) {
+      return null;
+  }
+
+  for (i = 0; i < n; i++) {
+      tr = $tablaMonstruos.rows[i];
+      if (tr.cells.length > col) {
+          td = tr.cells[col];
+          cells.push(td);
+      }
+  }
+  return cells;
+}
+
+function calcularPromedioMiedo(monstruos){
+  let sumatoriaMiedo = 0;
+  if(monstruos.length > 1){
+    sumatoriaMiedo = monstruos.reduce( (acum, actual, index) => {
+      let sumatoria;
+      if(index == 1){
+        sumatoria = Number(acum.miedo) + Number(actual.miedo);
+      }else{
+        sumatoria = acum + Number(actual.miedo);
+      }
+      return sumatoria;
+    });
+  }else{
+    if(monstruos.length == 1){
+      sumatoriaMiedo = monstruos[0].miedo;
+    }
+  }
+  let prom;
+  if(monstruos.length > 0){
+    prom = sumatoriaMiedo / ($tablaMonstruos.rows.length-1);
+  }else{
+    prom = 0;
+  }
+  $readOnlyText.value = prom;
+}

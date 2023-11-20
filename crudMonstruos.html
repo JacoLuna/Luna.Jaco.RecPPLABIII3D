@@ -89,7 +89,7 @@
         <div class="inputs">
           <label for="rangeMiedo" class="form-label form-check-inline">
           <i class="fa-solid fa-spider iconos"></i>Miedo</label>
-          <input type="range" class="form-range inputs" min="0" max="5" step="0.5" id="rangeMiedo">
+          <input type="range" class="form-range inputs" min="0" max="100" step="10" id="rangeMiedo">
         </div>
 
         <div class="form-floating inputs">
@@ -158,21 +158,53 @@
 
       <div class="container-md tablaSection">
         
-        <div class="form-floating filtro">
-          <select name="Filtro" class="form-select" id="cboFiltro" aria-label="Floating label select example">
-          </select>
-          <label for="cboFiltro">Tipo</label>
+        <div id="caracteristicas">
+          <div class="form-floating filtro">
+            <select name="Filtro" class="form-select" id="cboFiltro" aria-label="Floating label select example" onchange="filtrar()">
+            </select>
+            <label for="cboFiltro">Tipo</label>
+          </div>
+
+          <input id="promedioMiedo" class="form-control form-input-lg mb-4" type="text" value="promedioMiedo" aria-label="readonly input example" readonly>
         </div>
 
         <table id="tablaMonstruos">
-          <tr>
+          <thead>
             <td class="cabecera">Nombre</td>
             <td class="cabecera">Alias</td>
             <td class="cabecera">Defensa</td>
             <td class="cabecera">Miedo</td>
             <td class="cabecera">Tipo</td>
             <td class="cabecera">Materias</td>
-          </tr>
+            
+            <div class="form-check form-check-inline item">
+              <input class="form-check-input filtroCkh" name="columna" type="checkbox" id="columnaNombre" value="Nombre" checked onchange="chkColumna(0, this)"/>
+              <label class="form-check-label" for="columnaNombre">Nombre</label>
+            </div>
+            <div class="form-check form-check-inline item">
+              <input class="form-check-input  filtroCkh" name="columna" type="checkbox" id="columnaAlias" value="Alias" checked onchange="chkColumna(1, this)"/>
+              <label class="form-check-label" for="columnaAlias">Alias</label>
+            </div>
+            <div class="form-check form-check-inline item">
+              <input class="form-check-input filtroCkh" name="columna" type="checkbox" id="columnaDefensa" value="Defensa" checked onchange="chkColumna(2, this)"/>
+              <label class="form-check-label" for="columnaDefensa">Defensa</label>
+            </div>
+            <div class="form-check form-check-inline item">
+              <input class="form-check-input filtroCkh" name="columna" type="checkbox" id="columnaMiedo" value="Miedo" checked onchange="chkColumna(3, this)"/>
+              <label class="form-check-label" for="columnaMiedo">Miedo</label>
+            </div>
+            <div class="form-check form-check-inline item">
+              <input class="form-check-input filtroCkh" name="columna" type="checkbox" id="columnaTipo" value="Tipo" checked onchange="chkColumna(4, this)"/>
+              <label class="form-check-label" for="columnaTipo">Tipo</label>
+            </div>
+            <div class="form-check form-check-inline item">
+              <input class="form-check-input filtroCkh" name="columna" type="checkbox" id="columnaMaterias" value="Materias" checked onchange="chkColumna(5, this)"/>
+              <label class="form-check-label" for="columnaMaterias">Materias</label>
+            </div>
+          </thead>
+          <tbody id="tbody">
+            
+          </tbody>
         </table>
 
       </div>

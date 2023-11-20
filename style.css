@@ -143,7 +143,20 @@ header {
   }
   .filtro{
     margin-bottom: 20px;
-    background-color: #a53dff;
+  }
+  #caracteristicas{
+    display: flex;
+    justify-content: space-between;
+    .filtro{
+      width: 85%;
+    }
+    #promedioMiedo{
+      width: 10%;
+      margin: 0 auto;
+      p{
+        justify-self: center;
+      }
+    }
   }
 }
 #tablaMonstruos {
@@ -197,6 +210,10 @@ footer {
 
 @media screen and (max-width: 600px) {
   /* FORM */
+  *{
+    margin: 0;
+    padding: 0;
+  }
   #crudMonstruos {
     height: 100%;
     #form {
@@ -256,11 +273,23 @@ footer {
   }
 
   /* TABLA */
-  #tablaMonstruos {
-    border-collapse: collapse;
-    font-size: small;
-    margin-top: 60px;
-    width: 100%;
+  .tablaSection{
+    #tablaMonstruos {
+      border-collapse: collapse;
+      font-size: small;
+      margin-top: 60px;
+      width: 100%;
+    }
+    
+    #caracteristicas{
+      flex-direction: column;
+      .filtro{
+        width: 100%;
+      }
+      #promedioMiedo{
+        width: 20%;
+      }
+    }
   }
 }
 
