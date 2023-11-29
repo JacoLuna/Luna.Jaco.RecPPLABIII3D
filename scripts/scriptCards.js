@@ -1,22 +1,30 @@
 const $cardsDiv = document.getElementById("cardsDiv");
 const $spinner = document.getElementById("spinnerGif");
 
-let monstruos = localStorage.getItem("monstruos")
-  ? JSON.parse(localStorage.getItem("monstruos"))
-  : [];
-
-if (monstruos.length != 0) {
-  setTimeout(() => {
-    monstruos.forEach((monstruo) => {
-      agregarMonstruo(monstruo);
-    });
-    $spinner.classList.add("hide");
-  }, 2000);
-  $spinner.classList.remove("hide");
-}
+const URLmonstruos = "http://localhost:3000/monstruos";
 
 window.onload = () =>{
-  
+  getMonstruos();
+}
+
+function getMonstruos() {
+  $spinner.classList.remove("hide");
+  axios
+    .get(URLmonstruos)
+    .then(({ data }) => {
+      let monstruos = data;
+      if (monstruos.length > 0) {
+        monstruos.forEach((monstruo) => {
+          agregarMonstruo(monstruo);
+        });
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      $spinner.classList.add("hide");
+    });
 }
 
 function agregarMonstruo(monstruo) {
