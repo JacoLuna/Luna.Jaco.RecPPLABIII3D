@@ -22,6 +22,7 @@ const $btnCancelarEdicion = document.getElementById("cancelarEdicion");
 const $btnEliminar = document.getElementById("Eliminar");
 const $mensajePopUp = document.getElementById("mensajePopUp");
 const $PopUp = document.getElementById("popUp");
+const $tbody = document.getElementById("tbody");
 
 const $btnGuardarText = document.createTextNode("Guardar");
 const $btnActualizarText = document.createTextNode("Actualizar");
@@ -96,6 +97,7 @@ $formulario.addEventListener("submit", (e) => {
             $spinner.classList.add("hide");
             $PopUp.open = true;
             $popUpText.textContent = "Monstruo Actualizado";
+            recargarTabla(monstruos);
           }, 2000);
           $spinner.classList.remove("hide");
         } else {
@@ -103,7 +105,7 @@ $formulario.addEventListener("submit", (e) => {
         }
       }
     });
-
+    
     if (nuevoMonstruo == undefined) {
       nuevoMonstruo = new Monstruo(
         localStorage.getItem("ultimoId"),
@@ -118,10 +120,10 @@ $formulario.addEventListener("submit", (e) => {
       monstruos.push(nuevoMonstruo);
 
       setTimeout(() => {
-        addRow(nuevoMonstruo);
         $spinner.classList.add("hide");
         $PopUp.open = true;
         $popUpText.textContent = "Monstruo Guardado";
+        recargarTabla(monstruos);
       }, 2000);
 
       $spinner.classList.remove("hide");
@@ -158,7 +160,7 @@ function eliminarMonstruo() {
   $btnEliminar.toggleAttribute("disabled");
 }
 
-function addRow(monstruo) {
+function addRow(monstruo, row = 0) {
   const $tr = document.createElement("tr");
 
   const $tdNombre = document.createElement("td");
@@ -175,7 +177,11 @@ function addRow(monstruo) {
   const $txtTipo = document.createTextNode(monstruo.tipo);
   const $txtMaterias = document.createTextNode(monstruo.materias);
 
-  $tablaMonstruos.appendChild($tr);
+  if (row == 0) {
+    $tbody.appendChild($tr);
+  } else {
+    $tbody.insertRow(row, $tr);
+  }
   $tr.append($tdNombre, $tdAlias, $tdDefensa, $tdMiedo, $tdTipo, $tdMaterias);
 
   $tdNombre.appendChild($txtNombre);
@@ -233,7 +239,7 @@ $formulario.addEventListener("reset", () => {
 function seleccionarMonstruo(e) {
   const celdas = e.querySelectorAll("td");
   let materias = celdas[5].textContent.split(",");
-
+  
   $formulario.txtNombre.value = celdas[0].textContent;
   $formulario.txtAlias.value = celdas[1].textContent;
   $formulario.defensa.value = celdas[2].textContent;
@@ -243,10 +249,13 @@ function seleccionarMonstruo(e) {
   $formulario.Materia.forEach((materia) => {
     materia.checked = false;
   });
-  materias.forEach((materia, index) => {
-    if (materia.value == materias[index].value) {
-      $formulario.Materia[index].checked = true;
-    }
+  
+  $chkGroup.forEach((element, index) => {
+    materias.forEach((materia) => {  
+      if (element.value == materia) {
+        $formulario.Materia[index].checked = true;
+      }
+    });
   });
 
   editando = true;
@@ -268,4 +277,13 @@ function seleccionarMonstruo(e) {
 
 function cerrarPopUp() {
   $PopUp.open = false;
+}
+
+function recargarTabla(monstruos) {
+  while ($tbody.firstChild) {
+    $tbody.removeChild($tbody.firstChild);
+  }
+  monstruos.forEach((monstruo) => {
+    addRow(monstruo);
+  });
 }

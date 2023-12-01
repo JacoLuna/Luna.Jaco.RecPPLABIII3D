@@ -51,7 +51,7 @@ header {
     align-items: center;
     box-sizing: border-box;
     border: 20px solid transparent;
-    background-color: #a53dff;
+    background-color: #955bc7;
     width: 80%;
     height: 100%;
     margin-right: auto;
@@ -84,7 +84,7 @@ header {
 
     #popUp{
       position: relative;
-      background-color: #ad50ff;
+      background-color: rgb(113, 44, 105);
       color: #fde7e7;
       align-items: center;
       border: solid black 2px;
@@ -98,7 +98,7 @@ header {
       }
 
       .botones {
-        background-color: #a53dff;
+        background-color: #955bc7;
         border: 2px solid #1a1a1a;
         border-radius: 15px;
         box-sizing: border-box;
@@ -124,16 +124,17 @@ header {
       transform: translateY(0);
     }
   }
-  #spinner {
-    display: flex;
-    justify-content: center;
-    margin-top: 15px;
-    margin-right: 100px;
-    #spinnerGif {
-      height: 100px;
-      animation-name: movimiento;
-      animation-duration: 2s;
-    }
+}
+
+#spinner {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+  margin-right: 100px;
+  #spinnerGif {
+    height: 100px;
+    animation-name: movimiento;
+    animation-duration: 2s;
   }
 }
 #error{
@@ -149,11 +150,11 @@ header {
   justify-content: left;
 }
 td {
-  border: solid #a53dff 1px;
+  border: solid #955bc7 1px;
   text-align: center;
 }
 .cabecera {
-  background-color: #a53dff;
+  background-color: #955bc7;
 }
 
 /* CARDS */
@@ -169,7 +170,7 @@ td {
     flex-wrap: wrap;
     .Cards{
       margin: 20px;
-      background-color: #a53dff;
+      background-color: #955bc7;
       padding:0 20px;
       border-radius: 5%;
       border: solid #9721ff 5px;
@@ -241,7 +242,7 @@ footer {
         .botones {
           /* display: flex; */
           height: 50%;
-          background-color: #a53dff;
+          background-color: #955bc7;
           border: 2px solid #1a1a1a;
           border-radius: 15px;
           box-sizing: content-box;
